@@ -1,0 +1,111 @@
+/* CSS Reset/Normalize */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Properties */
+:root {
+  --hint-color: #747c92;
+  --primary-color: #0a014f;
+  --secondary-color: #820263;
+  --text-color: #100b00;
+  --white: #fdf7fa;
+}
+
+/* Base Styles */
+html {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-color);
+  background-color: var(--white);
+}
+
+/* Remove default styles */
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  border: none;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+input {
+  font: inherit;
+  border: none;
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+/* Basic utility classes */
+.container {
+  min-height: 100vh;
+}
+
+/* Remove default link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Basic image styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--hint-color);
+  margin: 1rem 0;
+}
+
+/* Layout */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas:
+  'sidebar header'
+  'sidebar main';
+}
+
+.sidebar {
+  grid-area: sidebar;
+
+  padding: 1em 2em;
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.header {
+  grid-area: header;
+
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr;
+
+  & .action-buttons {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1em;
+
+    padding-left: 1em;
+  }
+}
+
+.main {
+  grid-area: main;
+}
