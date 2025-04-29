@@ -12,7 +12,7 @@
   --hint-color: #747c92;
   --primary-color: #0a014f;
   --secondary-color: #820263;
-  --text-color: #100b00;
+  --black: #100b00;
   --white: #fdf7fa;
 }
 
@@ -25,7 +25,7 @@ html {
 
 body {
   min-height: 100vh;
-  color: var(--text-color);
+  color: var(--black);
   background-color: var(--white);
 }
 
@@ -38,15 +38,15 @@ button {
   font: inherit;
   border: none;
   cursor: pointer;
-  background-color: var(--secondary-color);
-  color: var(--white);
+  color: var(--black);
+  background-color: var(--white);
 }
 
 input {
   font: inherit;
   border: none;
   color: var(--white);
-  background-color: var(--primary-color);
+  background-color: var(--hint-color);
 }
 
 /* Basic utility classes */
@@ -76,10 +76,14 @@ hr {
 /* Layout */
 .container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: max-content minmax(600px, 1fr);
+  grid-template-rows: max-content calc(100vh);
   grid-template-areas:
   'sidebar header'
   'sidebar main';
+  gap: 1.5rem;
+
+  padding-right: 1.5rem;
 }
 
 .sidebar {
@@ -92,20 +96,57 @@ hr {
 
 .header {
   grid-area: header;
-
   display: grid;
   grid-template-columns: 2fr 4fr 1fr;
+  grid-template-areas: 'buttons search profile';
+  place-content: center;
+
+  padding: 1rem;
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.2);
 
   & .action-buttons {
     display: flex;
     justify-content: start;
     align-items: center;
     gap: 1em;
+  }
 
-    padding-left: 1em;
+  & .search-bar {
+    display: flex;
+    place-content: end;
+    gap: .5em;
+  }
+
+  & .user-info {
+    display: flex;
+    gap: .5rem;
+    place-content: end;
+
+    & .divider {
+      grid-area: divider;
+      height: 100%;
+      width: 1px;
+      border: 1px solid var(--hint-color);
+    }
+
+    & .user-name {
+      align-self: center;
+    }
   }
 }
 
-.main {
+.main-content {
   grid-area: main;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+  'projects sidebar';
+
+  & .projects-grid {
+    grid-area: projects;
+  }
+
+  & .sidebar-content {
+    grid-area: sidebar;
+  }
 }
